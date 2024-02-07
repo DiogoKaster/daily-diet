@@ -7,6 +7,8 @@ import {
 } from "@expo-google-fonts/nunito-sans";
 
 import { Home } from "@screens/Home";
+import { Loading } from "@components/Loading";
+
 import theme from "@theme/DefaultTheme";
 
 export default function App() {
@@ -19,11 +21,11 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <StatusBar
         barStyle="light-content"
-        backgroundColor="transparent"
+        backgroundColor="#333638"
         translucent
       />
 
-      {fontsLoaded && <Home />}
+      {fontsLoaded ? <Home /> : <Loading />}
     </ThemeProvider>
   );
 }

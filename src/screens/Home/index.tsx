@@ -1,9 +1,13 @@
-import { Container, Title } from "./styles";
+import { Header } from "@components/Header";
+import { Container } from "./styles";
+import { MealsPercentage } from "@components/MealsPercentage";
 
 export function Home() {
   return (
     <Container>
-      <Title>Open up App.tsx to start working on your app!</Title>
+      <Header />
+
+      <MealsPercentage />
     </Container>
   );
 }

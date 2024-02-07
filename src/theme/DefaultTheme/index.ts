@@ -9,6 +9,14 @@ export default {
     gray_5: "#DDDEDF",
     gray_6: "#EFF0F0",
     gray_7: "#FAFAFA",
+
+    red_dark: "#BF3B44",
+    red_mid: "#F3BABD",
+    red_light: "#F4E6E7",
+
+    green_dark: "#639339",
+    green_mid: "#CBE4B4",
+    green_light: "#E5F0DB",
   },
   font_family: {
     regular: "NunitoSans_400Regular",
