@@ -1,21 +1,41 @@
 import { TouchableOpacityProps } from "react-native";
-import { Container, MealsPercentageStyleProps } from "./styles";
+import {
+  Button,
+  Container,
+  IconLeft,
+  IconUp,
+  MealsPercentageColorProps,
+  MealsPercentageStyleProps,
+  Subtitle,
+  Title,
+} from "./styles";
 
 interface MealsPercentageProps extends TouchableOpacityProps {
+  interfaceColor?: MealsPercentageColorProps;
   interfaceStyle?: MealsPercentageStyleProps;
   backButton?: boolean;
 }
 
 export function MealsPercentage({
-  interfaceStyle = "POSITIVE",
-  backButton = false,
+  interfaceColor = "POSITIVE",
+  interfaceStyle = "REDUCED",
   ...rest
 }: MealsPercentageProps) {
   return (
     <Container
+      interfaceColor={interfaceColor}
       interfaceStyle={interfaceStyle}
-      backButton={backButton}
       {...rest}
-    ></Container>
+    >
+      <Button interfaceStyle={interfaceStyle}>
+        {interfaceStyle === "FULL" ? (
+          <IconLeft iconColor={interfaceColor} />
+        ) : (
+          <IconUp iconColor={interfaceColor} />
+        )}
+      </Button>
+      <Title>50,96%</Title>
+      <Subtitle>das refeições dentro da dieta</Subtitle>
+    </Container>
   );
 }
