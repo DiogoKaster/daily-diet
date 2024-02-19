@@ -6,7 +6,8 @@ import {
   NunitoSans_700Bold,
 } from "@expo-google-fonts/nunito-sans";
 
-import { Home } from "@screens/Home";
+import { Statistics } from "@screens/Statistics";
+
 import { Loading } from "@components/Loading";
 
 import theme from "@theme/DefaultTheme";
@@ -25,7 +26,7 @@ export default function App() {
         translucent
       />
 
-      {fontsLoaded ? <Home /> : <Loading />}
+      {fontsLoaded ? <Statistics /> : <Loading />}
     </ThemeProvider>
   );
 }

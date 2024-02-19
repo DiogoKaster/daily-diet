@@ -22,7 +22,7 @@ export interface ButtonPlaceProps {
 export const Container = styled(TouchableOpacity)<MealsPercentageProps>`
   width: 100%;
   height: ${({ interfaceStyle }) =>
-    interfaceStyle === "FULL" ? "200px" : "102px"};
+    interfaceStyle === "FULL" ? "180px" : "102px"};
   margin-top: ${({ interfaceStyle }) =>
     interfaceStyle === "FULL" ? "0" : "32px"};
   border-radius: 6px;
