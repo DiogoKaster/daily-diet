@@ -31,7 +31,7 @@ export const Title = styled.Text`
   font-size: ${({ theme }) => theme.font_size.xl}px;
   font-family: ${({ theme }) => theme.font_family.bold};
   color: ${({ theme }) => theme.colors.gray_1};
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 `;
 
 export const Button = styled(TouchableOpacity)`

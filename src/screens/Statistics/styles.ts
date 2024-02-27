@@ -10,7 +10,8 @@ export const Content = styled.View`
   flex: 1;
   padding: 24px;
   align-items: center;
-  border-radius: 16px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
   margin-top: -20px;
   background-color: ${({ theme }) => theme.colors.gray_7};
 `;
