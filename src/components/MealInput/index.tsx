@@ -1,15 +1,20 @@
-import { Container, Input, InputTypeProps, Title } from "./styles";
+import { Container, Input, Title, InputStyleType } from "./styles";
 
 interface MealInputProps {
-  type: InputTypeProps;
   title: string;
+  styleType?: InputStyleType;
 }
 
-export function MealInput({ type, title }: MealInputProps) {
+export function MealInput({ title, styleType = "REDUCED" }: MealInputProps) {
   return (
-    <Container type={type}>
+    <Container>
       <Title>{title}</Title>
-      <Input type={type} />
+      <Input
+        multiline
+        textBreakStrategy="simple"
+        textAlignVertical={styleType === "FULL" ? "top" : "center"}
+        styleType={styleType}
+      />
     </Container>
   );
 }

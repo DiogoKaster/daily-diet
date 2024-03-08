@@ -1,29 +1,30 @@
+import { TextInput } from "react-native";
 import styled from "styled-components/native";
 
-export type InputTypeProps = "FULL" | "REDUCED";
+export type InputStyleType = "FULL" | "REDUCED";
 
-interface InputStyleProps {
-  type: InputTypeProps;
+export interface InputStyleProp {
+  styleType: InputStyleType;
 }
 
-export const Container = styled.View<InputStyleProps>`
+export const Container = styled.View`
   flex: 1;
-  max-height: ${({ type }) => (type === "FULL" ? "120px" : "56px")};
-  margin: 24px 0;
+  margin-top: 16px;
 `;
 
 export const Title = styled.Text`
   font-size: ${({ theme }) => theme.font_size.lg}px;
   font-family: ${({ theme }) => theme.font_family.bold};
-  color: ${({ theme }) => theme.colors.gray_2};
+  color: ${({ theme }) => theme.colors.gray_1};
+  margin-bottom: 8px;
 `;
 
-export const Input = styled.TextInput<InputStyleProps>`
+export const Input = styled(TextInput)<InputStyleProp>`
+  width: 100%;
+  height: ${({ styleType }) => (styleType === "FULL" ? "120px" : "48px")};
+  max-height: ${({ styleType }) => (styleType === "FULL" ? "120px" : "48px")};
+  padding: 8px;
+  border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.gray_7};
   border: 1px solid ${({ theme }) => theme.colors.gray_5};
-  border-radius: 8px;
-  padding: 16px;
-  flex: 1;
-  min-width: 56px;
-  min-height: 56px;
 `;

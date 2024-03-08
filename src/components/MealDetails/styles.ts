@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.gray_7};
   padding: 24px;
@@ -9,8 +9,7 @@ export const Container = styled.View`
   border-top-right-radius: 16px;
 `;
 
-export const InputsContainer = styled.View`
+export const InputContainer = styled.View`
   flex-direction: row;
-  margin-top: -20px;
   gap: 16px;
 `;

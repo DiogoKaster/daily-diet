@@ -1,16 +1,15 @@
 import { MealInput } from "@components/MealInput";
-import { Container, InputsContainer } from "./styles";
+import { Container, InputContainer } from "./styles";
 
 export function MealDetails() {
   return (
-    <Container>
-      <MealInput type="REDUCED" title="Nome" />
-      <MealInput type="FULL" title="Descrição" />
-
-      <InputsContainer>
-        <MealInput type="REDUCED" title="Data" />
-        <MealInput type="REDUCED" title="Hora" />
-      </InputsContainer>
+    <Container showsVerticalScrollIndicator={false}>
+      <MealInput title="Nome" />
+      <MealInput title="Descrição" styleType="FULL" />
+      <InputContainer>
+        <MealInput title="Data" />
+        <MealInput title="Hora" />
+      </InputContainer>
     </Container>
   );
 }
