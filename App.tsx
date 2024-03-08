@@ -6,7 +6,7 @@ import {
   NunitoSans_700Bold,
 } from "@expo-google-fonts/nunito-sans";
 
-import { MealCreation } from "@screens/MealCreation";
+import { MealFeedback } from "@screens/MealFeedback";
 
 import { Loading } from "@components/Loading";
 
@@ -26,7 +26,7 @@ export default function App() {
         translucent
       />
 
-      {fontsLoaded ? <MealCreation /> : <Loading />}
+      {fontsLoaded ? <MealFeedback /> : <Loading />}
     </ThemeProvider>
   );
 }
