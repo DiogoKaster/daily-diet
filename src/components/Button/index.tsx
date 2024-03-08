@@ -5,14 +5,14 @@ import { Title } from "./styles";
 
 export interface ButtonProps extends TouchableOpacityProps {
   title: string;
-  icon: keyof typeof MaterialIcons.glyphMap;
+  icon?: keyof typeof MaterialIcons.glyphMap;
   type: ButtonStyleTypeProps;
 }
 
 export function Button({ title, icon, type, ...rest }: ButtonProps) {
   return (
     <Container type={type} {...rest}>
-      <Icon name={icon} type={type} />
+      {icon && <Icon name={icon} type={type} />}
       <Title type={type}>{title}</Title>
     </Container>
   );

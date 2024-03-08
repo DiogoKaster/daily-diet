@@ -12,4 +12,5 @@ export const Container = styled.ScrollView`
 export const InputContainer = styled.View`
   flex-direction: row;
   gap: 16px;
+  margin-bottom: 16px;
 `;
