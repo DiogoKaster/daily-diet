@@ -1,10 +1,11 @@
-import { MealInput } from "@components/MealInput";
 import { Container, InputContainer } from "./styles";
-import { Title } from "@components/MealInput/styles";
-import { MealCheckbox } from "@components/MealCheckbox";
-import { Button } from "@components/Button";
 
-export function MealDetails() {
+import { Title } from "@components/MealInput/styles";
+import { Button } from "@components/Button";
+import { MealInput } from "@components/MealInput";
+import { MealCheckbox } from "@components/MealCheckbox";
+
+export function MealForm() {
   return (
     <Container showsVerticalScrollIndicator={false}>
       <MealInput title="Nome" />
