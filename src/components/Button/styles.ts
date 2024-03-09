@@ -9,7 +9,7 @@ interface ButtonStyleProps {
 }
 
 export const Container = styled(TouchableOpacity)<ButtonStyleProps>`
-  margin-top: 16px;
+  margin-top: 8px;
   width: 100%;
   height: 50px;
   background-color: ${({ theme, type }) =>

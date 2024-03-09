@@ -9,7 +9,7 @@ export interface MealCheckboxStyleProp {
 }
 
 export interface MealCheckboxStyleStatusProp {
-  styleType?: MealCheckboxStyleType;
+  styleType: MealCheckboxStyleType;
 }
 
 export const Container = styled(TouchableOpacity)<MealCheckboxStyleProp>`
