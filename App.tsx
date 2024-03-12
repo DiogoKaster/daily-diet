@@ -6,11 +6,11 @@ import {
   NunitoSans_700Bold,
 } from "@expo-google-fonts/nunito-sans";
 
-import { MealDetails } from "@screens/MealDetails";
+import theme from "@theme/DefaultTheme";
 
 import { Loading } from "@components/Loading";
 
-import theme from "@theme/DefaultTheme";
+import { Routes } from "./src/routes";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -26,7 +26,7 @@ export default function App() {
         translucent
       />
 
-      {fontsLoaded ? <MealDetails /> : <Loading />}
+      {fontsLoaded ? <Routes /> : <Loading />}
     </ThemeProvider>
   );
 }
