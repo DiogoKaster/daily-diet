@@ -9,8 +9,19 @@ import {
 } from "./styles";
 import { MealTag } from "@components/MealTag";
 import { Button } from "@components/Button";
+import { useNavigation } from "@react-navigation/native";
 
 export function MealDetails() {
+  const navigation = useNavigation();
+
+  function handleEditMeal() {
+    navigation.navigate("creation");
+  }
+
+  function handleDeleteMeal() {
+    navigation.navigate("home");
+  }
+
   return (
     <Container>
       <MealHeader title="Refeição" styleType="POSITIVE" />
@@ -30,11 +41,13 @@ export function MealDetails() {
           icon="drive-file-rename-outline"
           title="Editar refeição"
           type="PRIMARY"
+          onPress={handleEditMeal}
         />
         <Button
           icon="delete-outline"
           title="Excluir refeição"
           type="SECONDARY"
+          onPress={handleDeleteMeal}
         />
       </ButtonContainer>
     </Container>

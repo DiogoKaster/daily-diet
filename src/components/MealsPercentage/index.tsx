@@ -1,4 +1,3 @@
-import { TouchableOpacityProps } from "react-native";
 import {
   Button,
   Container,
@@ -9,11 +8,11 @@ import {
   Subtitle,
   Title,
 } from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
-interface MealsPercentageProps extends TouchableOpacityProps {
+interface MealsPercentageProps {
   interfaceColor?: MealsPercentageColorProps;
   interfaceStyle?: MealsPercentageStyleProps;
-  backButton?: boolean;
 }
 
 export function MealsPercentage({
@@ -21,13 +20,24 @@ export function MealsPercentage({
   interfaceStyle = "REDUCED",
   ...rest
 }: MealsPercentageProps) {
+  const navigation = useNavigation();
+
+  function handleClick(destination: string) {
+    if (destination === "back") {
+      navigation.navigate("home");
+    } else if (destination === "statistics") {
+      navigation.navigate("statistics");
+    }
+  }
+
   return (
-    <Container
-      interfaceColor={interfaceColor}
-      interfaceStyle={interfaceStyle}
-      {...rest}
-    >
-      <Button interfaceStyle={interfaceStyle}>
+    <Container interfaceColor={interfaceColor} interfaceStyle={interfaceStyle}>
+      <Button
+        interfaceStyle={interfaceStyle}
+        onPress={() =>
+          handleClick(interfaceStyle === "FULL" ? "back" : "statistics")
+        }
+      >
         {interfaceStyle === "FULL" ? (
           <IconLeft iconColor={interfaceColor} />
         ) : (

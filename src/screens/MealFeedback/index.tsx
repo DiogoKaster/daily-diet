@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import {
   ButtonContainer,
   Container,
@@ -10,6 +11,12 @@ import negativeImage from "@assets/NegativeIllustration.png";
 import { Button } from "@components/Button";
 
 export function MealFeedback() {
+  const navigation = useNavigation();
+
+  function handleGoToHome() {
+    navigation.navigate("home");
+  }
+
   return (
     <Container>
       <Title styleType="POSITIVE">Continue assim!</Title>
@@ -18,7 +25,11 @@ export function MealFeedback() {
       </Subtitle>
       <Illustration source={positiveImage} />
       <ButtonContainer>
-        <Button title="Ir para a página principal" type="PRIMARY" />
+        <Button
+          title="Ir para a página principal"
+          type="PRIMARY"
+          onPress={handleGoToHome}
+        />
       </ButtonContainer>
     </Container>
   );

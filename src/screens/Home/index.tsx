@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { SectionList } from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
+
 import { Header } from "@components/Header";
 import { Button } from "@components/Button";
 import { MealCard } from "@components/MealCard";
@@ -13,7 +15,6 @@ import { Container, Subtitle, Title } from "./styles";
     title: "12.12.2021",
     data: [
       {
-        id: 1,
         name: "Café da manhã",
         description: "Pão com manteiga",
         time: "08:00",
@@ -21,7 +22,6 @@ import { Container, Subtitle, Title } from "./styles";
         isPlanned: true,
       },
       {
-        id: 2,
         name: "Almoço",
         description: "Arroz, feijão e frango",
         time: "12:00",
@@ -57,6 +57,12 @@ export function Home() {
     },
   ]);
 
+  const navigation = useNavigation();
+
+  function handleNewMeal() {
+    navigation.navigate("creation");
+  }
+
   return (
     <Container>
       <Header />
@@ -64,7 +70,12 @@ export function Home() {
       <MealsPercentage />
 
       <Subtitle>Refeições</Subtitle>
-      <Button title="Adicionar refeição" icon="add" type="PRIMARY" />
+      <Button
+        title="Nova refeição"
+        icon="add"
+        type="PRIMARY"
+        onPress={handleNewMeal}
+      />
 
       <SectionList
         sections={meals}

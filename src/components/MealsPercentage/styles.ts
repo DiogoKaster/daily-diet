@@ -19,7 +19,7 @@ export interface ButtonPlaceProps {
   interfaceStyle: MealsPercentageStyleProps;
 }
 
-export const Container = styled(TouchableOpacity)<MealsPercentageProps>`
+export const Container = styled.View<MealsPercentageProps>`
   width: 100%;
   height: ${({ interfaceStyle }) =>
     interfaceStyle === "FULL" ? "180px" : "102px"};

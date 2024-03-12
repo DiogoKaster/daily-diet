@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { Container, Divider, MealName, MealTime, Status } from "./styles";
 import { TouchableOpacityProps } from "react-native";
 
@@ -7,14 +8,15 @@ interface MealCardProps extends TouchableOpacityProps {
   isPlanned: boolean;
 }
 
-export function MealCard({
-  time,
-  name,
-  isPlanned = true,
-  ...rest
-}: MealCardProps) {
+export function MealCard({ time, name, isPlanned, ...rest }: MealCardProps) {
+  const navigation = useNavigation();
+
+  function handleSeeDetails() {
+    navigation.navigate("details");
+  }
+
   return (
-    <Container {...rest}>
+    <Container onPress={handleSeeDetails} {...rest}>
       <MealTime>{time}</MealTime>
       <Divider />
       <MealName>{name}</MealName>
