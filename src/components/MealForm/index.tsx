@@ -1,45 +1,21 @@
-import { useState } from "react";
-import { MealDTO } from "@storage/meal/MealDTO";
+import { useNavigation } from "@react-navigation/native";
 
 import { Container, InputContainer } from "./styles";
-
 import { Title } from "@components/MealInput/styles";
 import { Button } from "@components/Button";
 import { MealInput } from "@components/MealInput";
 import { MealCheckbox } from "@components/MealCheckbox";
-import { useNavigation } from "@react-navigation/native";
+
 import { mealCreate } from "@storage/meal/mealCreate";
+import { useMealForm } from "../../hooks/useMealForm";
 
 export function MealForm() {
   const navigation = useNavigation();
-  const [isPlanned, setIsPlanned] = useState(false);
-  const [meal, setMeal] = useState<MealDTO>({
-    name: "",
-    description: "",
-    time: "",
-    date: "",
-    isPlanned: false,
-  });
-
-  function handleCheckboxChange(value: boolean) {
-    setIsPlanned(value);
-    setMeal({
-      ...meal,
-      isPlanned: value,
-    });
-  }
-
-  function handleInputChange(field: string, value: string) {
-    setMeal({
-      ...meal,
-      [field]: value,
-    });
-  }
+  const { meal, handleInputChange, handleCheckboxChange } = useMealForm();
 
   async function handleSaveMeal() {
     try {
-      await mealCreate(meal);
-      navigation.navigate("home");
+      console.log(meal);
     } catch (error) {
       console.error(error);
     }
@@ -83,13 +59,13 @@ export function MealForm() {
         <MealCheckbox
           styleType="POSITIVE"
           title="Sim"
-          isActive={isPlanned}
+          isActive={meal.isPlanned}
           onPress={() => handleCheckboxChange(true)}
         />
         <MealCheckbox
           styleType="NEGATIVE"
           title="Não"
-          isActive={!isPlanned}
+          isActive={!meal.isPlanned}
           onPress={() => handleCheckboxChange(false)}
         />
       </InputContainer>
