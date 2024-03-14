@@ -15,7 +15,8 @@ export function MealForm() {
 
   async function handleSaveMeal() {
     try {
-      console.log(meal);
+      await mealCreate(meal);
+      navigation.navigate("home");
     } catch (error) {
       console.error(error);
     }

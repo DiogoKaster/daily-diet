@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { SectionList } from "react-native";
 
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 import { Header } from "@components/Header";
 import { Button } from "@components/Button";
@@ -10,56 +10,30 @@ import { MealsPercentage } from "@components/MealsPercentage";
 
 import { Container, Subtitle, Title } from "./styles";
 
-/*
-  objectExample: {
-    title: "12.12.2021",
-    data: [
-      {
-        name: "Café da manhã",
-        description: "Pão com manteiga",
-        time: "08:00",
-        date: "12.12.2021",
-        isPlanned: true,
-      },
-      {
-        name: "Almoço",
-        description: "Arroz, feijão e frango",
-        time: "12:00",
-        date: "12.12.2021",
-        isPlanned: false,
-      },
-    ]
-  }
-*/
+import { StorageDTO } from "@storage/StorageDTO";
+import { mealGetAll } from "@storage/meal/mealGetAll";
 
 export function Home() {
-  const [meals, setMeals] = useState([
-    {
-      title: "12.12.2021",
-      data: [
-        {
-          id: 1,
-          name: "Café da manhã",
-          description: "Pão com manteiga",
-          time: "08:00",
-          date: "12.12.2021",
-          isPlanned: true,
-        },
-        {
-          id: 2,
-          name: "Almoço",
-          description: "Arroz, feijão e frango",
-          time: "12:00",
-          date: "12.12.2021",
-          isPlanned: false,
-        },
-      ],
-    },
-  ]);
+  const [meals, setMeals] = useState<StorageDTO[]>([]);
 
   const navigation = useNavigation();
 
-  function handleNewMeal() {
+  async function fetchMeals() {
+    try {
+      const data = await mealGetAll();
+      setMeals(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchMeals();
+    }, [])
+  );
+
+  function handleGoToNewMeal() {
     navigation.navigate("creation");
   }
 
@@ -74,7 +48,7 @@ export function Home() {
         title="Nova refeição"
         icon="add"
         type="PRIMARY"
-        onPress={handleNewMeal}
+        onPress={handleGoToNewMeal}
       />
 
       <SectionList
