@@ -16,7 +16,7 @@ export function MealForm() {
   async function handleSaveMeal() {
     try {
       await mealCreate(meal);
-      navigation.navigate("home");
+      navigation.navigate("feedback", { isPlanned: meal.isPlanned });
     } catch (error) {
       console.error(error);
     }

@@ -4,7 +4,7 @@ export declare global {
       home: undefined;
       creation: undefined;
       details: undefined;
-      feedback: undefined;
+      feedback: { isPlanned: boolean };
       statistics: undefined;
     }
   }

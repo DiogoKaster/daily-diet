@@ -9,12 +9,7 @@ export async function mealCreate(newMeal: MealDTO) {
   try {
     const storedMeals = await mealGetAll();
 
-    console.log("storedMeals", storedMeals);
-    console.log("newMeal", newMeal);
-    console.log(storedMeals.length);
-
     if (!storedMeals || storedMeals.length === 0) {
-      console.log("entrou no if");
       const newCollection: StorageDTO[] = [
         {
           title: newMeal.date,
@@ -38,7 +33,6 @@ export async function mealCreate(newMeal: MealDTO) {
         }
       });
 
-      // Se nenhum item corresponde à data, então adicionamos um novo StorageDTO
       if (
         !updatedMeals.some((meal: StorageDTO) => meal.title === newMeal.date)
       ) {
@@ -48,7 +42,6 @@ export async function mealCreate(newMeal: MealDTO) {
         });
       }
 
-      console.log("newMeals", updatedMeals);
       await AsyncStorage.setItem(MEAL_COLLECTION, JSON.stringify(updatedMeals));
     }
   } catch (error) {
