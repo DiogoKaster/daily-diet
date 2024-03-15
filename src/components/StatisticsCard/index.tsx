@@ -1,7 +1,7 @@
 import { Container, StatisticsCardStyleProp, Subtitle, Title } from "./styles";
 
 interface StatisticsCardProps {
-  title: string;
+  title: number | string;
   subtitle: string;
   widthChange?: boolean;
   styleType: StatisticsCardStyleProp;

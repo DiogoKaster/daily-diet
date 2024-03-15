@@ -13,12 +13,13 @@ import { useNavigation } from "@react-navigation/native";
 interface MealsPercentageProps {
   interfaceColor?: MealsPercentageColorProps;
   interfaceStyle?: MealsPercentageStyleProps;
+  title: number;
 }
 
 export function MealsPercentage({
   interfaceColor = "POSITIVE",
   interfaceStyle = "REDUCED",
-  ...rest
+  title,
 }: MealsPercentageProps) {
   const navigation = useNavigation();
 
@@ -44,7 +45,7 @@ export function MealsPercentage({
           <IconUp iconColor={interfaceColor} />
         )}
       </Button>
-      <Title>50,96%</Title>
+      <Title>{title}%</Title>
       <Subtitle>das refeições dentro da dieta</Subtitle>
     </Container>
   );

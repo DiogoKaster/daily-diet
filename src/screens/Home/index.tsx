@@ -12,15 +12,21 @@ import { Container, Subtitle, Title } from "./styles";
 
 import { StorageDTO } from "@storage/StorageDTO";
 import { mealGetAll } from "@storage/meal/mealGetAll";
+import { mealStatistics } from "@storage/meal/mealStatistics";
+import { StatisticsData } from "@screens/Statistics";
 
 export function Home() {
   const [meals, setMeals] = useState<StorageDTO[]>([]);
+  const [statisticsData, setStatisticsData] = useState({} as StatisticsData);
 
   const navigation = useNavigation();
 
-  async function fetchMeals() {
+  async function fetchData() {
     try {
       const data = await mealGetAll();
+      const statistics = await mealStatistics();
+
+      setStatisticsData(statistics);
       setMeals(data);
     } catch (error) {
       console.error(error);
@@ -29,7 +35,7 @@ export function Home() {
 
   useFocusEffect(
     useCallback(() => {
-      fetchMeals();
+      fetchData();
     }, [])
   );
 
@@ -41,7 +47,7 @@ export function Home() {
     <Container>
       <Header />
 
-      <MealsPercentage />
+      <MealsPercentage title={statisticsData.percentage} />
 
       <Subtitle>Refeições</Subtitle>
       <Button
