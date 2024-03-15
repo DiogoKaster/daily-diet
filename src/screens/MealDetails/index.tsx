@@ -1,3 +1,4 @@
+import { useCallback, useState } from "react";
 import { MealHeader } from "@components/MealHeader";
 import {
   BaseText,
@@ -9,10 +10,36 @@ import {
 } from "./styles";
 import { MealTag } from "@components/MealTag";
 import { Button } from "@components/Button";
-import { useNavigation } from "@react-navigation/native";
+import {
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
+import { mealGetOne } from "@storage/meal/mealGetOne";
+import { MealDTO } from "@storage/meal/MealDTO";
 
 export function MealDetails() {
   const navigation = useNavigation();
+  const route = useRoute();
+  const { name, time } = route.params as { name: string; time: string };
+  const [meal, setMeal] = useState<MealDTO>({} as MealDTO);
+
+  async function fetchMeal() {
+    try {
+      const meal = await mealGetOne(name);
+      if (meal) {
+        setMeal(meal);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchMeal();
+    }, [])
+  );
 
   function handleEditMeal() {
     navigation.navigate("creation");
@@ -24,17 +51,20 @@ export function MealDetails() {
 
   return (
     <Container>
-      <MealHeader title="Refeição" styleType="POSITIVE" />
+      <MealHeader
+        title="Refeição"
+        styleType={meal.isPlanned ? "POSITIVE" : "NEGATIVE"}
+      />
       <ContentContainer>
-        <Title>Sanduíche</Title>
-        <BaseText>
-          Sanduíche de pão integral com atum e salada de alface de tomate
-        </BaseText>
+        <Title>{meal.name}</Title>
+        <BaseText>{meal.description}</BaseText>
 
         <Subtitle>Data e hora</Subtitle>
-        <BaseText>12/08/2022 às 16:00</BaseText>
+        <BaseText>
+          {meal.date} às {meal.time}
+        </BaseText>
 
-        <MealTag />
+        <MealTag isPlanned={meal.isPlanned} />
       </ContentContainer>
       <ButtonContainer>
         <Button

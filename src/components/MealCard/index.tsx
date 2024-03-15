@@ -12,7 +12,7 @@ export function MealCard({ time, name, isPlanned, ...rest }: MealCardProps) {
   const navigation = useNavigation();
 
   function handleSeeDetails() {
-    navigation.navigate("details");
+    navigation.navigate("details", { name, time });
   }
 
   return (
