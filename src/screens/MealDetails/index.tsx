@@ -17,6 +17,8 @@ import {
 } from "@react-navigation/native";
 import { mealGetOne } from "@storage/meal/mealGetOne";
 import { MealDTO } from "@storage/meal/MealDTO";
+import { mealDeleteOne } from "@storage/meal/mealDeleteOne";
+import { mealDeleteAll } from "@storage/meal/mealDeleteAll";
 
 export function MealDetails() {
   const navigation = useNavigation();
@@ -45,7 +47,9 @@ export function MealDetails() {
     navigation.navigate("creation");
   }
 
-  function handleDeleteMeal() {
+  async function handleDeleteMeal() {
+    console.log(meal.name);
+    await mealDeleteOne(meal.date, meal.name);
     navigation.navigate("home");
   }
 
